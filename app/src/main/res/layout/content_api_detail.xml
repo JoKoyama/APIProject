@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView_detail_animeTitleCard"
+        android:layout_width="187dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeSynopsis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeGenre"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeTitle"
+        android:layout_width="380dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeTitle"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeGenre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeGenre"
+        android:layout_width="380dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeGenre"
+        app:layout_constraintBottom_toTopOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeTitle" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeSynopsis"
+        android:layout_width="380"
+        android:layout_height="241dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeSynopsis"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeStatusString"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_detail_animeTitleCard" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeEpisodeLength"
+        android:layout_width="180"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeEpisodes"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeProducer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeGenre" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeProducer"
+        android:layout_width="180"
+        android:layout_height="40"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeProducer"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeSeasonAired"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeEpisodeLength" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeSeasonAired"
+        android:layout_width="180"
+        android:layout_height="40"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeSeasonAired"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeStudio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeProducer" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeMalScore"
+        android:layout_width="180"
+        android:layout_height="40"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeMalScore"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeSynopsis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeStudio" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeStudio"
+        android:layout_width="180"
+        android:layout_height="40"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeStudio"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeMalScore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_detail_animeTitleCard"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeSeasonAired" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeStatusString"
+        android:layout_width="81dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeStatusString"
+        app:layout_constraintBottom_toTopOf="@+id/textView_detail_animeStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeSynopsis" />
+
+    <TextView
+        android:id="@+id/textView_detail_animeStatus"
+        android:layout_width="380"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/animeStatus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detail_animeStatusString" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
