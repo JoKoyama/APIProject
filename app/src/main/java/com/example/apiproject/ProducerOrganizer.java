@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ProducerOrganizer implements Parcelable {
-    private String mal_id;
-    private String type;
-    private String name;
-    private String url;
+    private String mal_id = "";
+    private String type = "";
+    private String name = "";
+    private String url = "";
 
 
     public ProducerOrganizer(){

@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class GenreOrganizer implements Parcelable {
-    private String type;
-    private int mal_id;
-    private String name;
-    private String url;
+    private String type = "";
+    private int mal_id = 0;
+    private String name = "";
+    private String url = "";
 
 
     public GenreOrganizer(){
@@ -51,11 +51,11 @@ public class GenreOrganizer implements Parcelable {
         this.name = name;
     }
 
-    public String getMal_id() {
+    public int getMal_id() {
         return mal_id;
     }
 
-    public void setMal_id(String mal_id) {
+    public void setMal_id(int mal_id) {
         this.mal_id = mal_id;
     }
 
@@ -75,7 +75,7 @@ public class GenreOrganizer implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(type);
-        parcel.writeString(mal_id);
+        parcel.writeInt(mal_id);
         parcel.writeString(name);
         parcel.writeString(url);
     }

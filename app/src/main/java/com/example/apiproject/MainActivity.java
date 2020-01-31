@@ -1,17 +1,26 @@
 package com.example.apiproject;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +29,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        {
+
+    private ApiAdapter apiAdapter;
+    private List<Organizer> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,37 +46,39 @@ public class MainActivity extends AppCompatActivity
 
         ApiGetter apiGetter = retrofit.create(ApiGetter.class);
 
-        Call<Organizer> callOrganizer = apiGetter.getSeason("winter",2020);
+        Call<WrapperOrganizer> callWrapperOrganizer = apiGetter.getSeason("winter",2020);
+        ListView listView = findViewById(R.id.ListView_main_list);
+        listView.setAdapter(apiAdapter);
 
-        callOrganizer.enqueue(new Callback<Organizer>() {
+        Log.d("LOOK AT ME", "onCreate: ");
+        Toast.makeText(MainActivity.this,"help me",Toast.LENGTH_SHORT).show();
+
+
+
+        callWrapperOrganizer.enqueue(new Callback<WrapperOrganizer>() {
             @Override
-            public void onResponse(Call<Organizer> call, Response<Organizer> response) {
-                Organizer foundShow = response.body();
+            public void onResponse(Call<WrapperOrganizer> call, Response<WrapperOrganizer> response) {
+                list = response.body().getAnime();
 
-                if(foundShow != null) {
-                    Toast.makeText(MainActivity.this, foundShow.getTitle(),
+
+
+
+                if(list != null) {
+                    Toast.makeText(MainActivity.this, list.toString(),
                             Toast.LENGTH_SHORT).show();
+                } else
+                {
+                    Toast.makeText(MainActivity.this, "I'm null help", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Organizer> call, Throwable t) {
+            public void onFailure(Call<WrapperOrganizer> call, Throwable t) {
                 Toast.makeText(MainActivity.this, t.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
 
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -97,29 +112,35 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+   private class ApiAdapter extends ArrayAdapter<Organizer> {
+        private List<Organizer> listList;
+        public ApiAdapter(List<Organizer> list){
+            super(MainActivity.this,-1,list );
+            listList = list;
         }
+       Drawable drawable_from_url(String url, String src_name)
+               throws java.net.MalformedURLException, java.io.IOException {
+           return Drawable.createFromStream(((java.io.InputStream)new java.net.URL(url).getContent()), src_name);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+       }
+
+       @Override
+       public View getView(int position, View convertView, ViewGroup parent) {
+           LayoutInflater inflater = getLayoutInflater();
+
+           if(convertView == null){
+               convertView = inflater.inflate(R.layout.listview,parent,false);
+           }
+           TextView textViewTitle = findViewById(R.id.textView_listview_title);
+           TextView textViewEpnum = findViewById(R.id.textView_listview_epnum);
+           TextView textViewGenre = findViewById(R.id.textView_listview_genre);
+           ImageView imageViewTitle = findViewById(R.id.imageView_listview_titlecard);
+           Picasso.get().load(list.get(position).getImage_url()).into(imageViewTitle);
+           textViewEpnum.setText(list.get(position).getEpisodes());
+           textViewTitle.setText(list.get(position).getTitle());
+           textViewGenre.setText(list.get(position).get);
+        }
+   }
+
+
 }

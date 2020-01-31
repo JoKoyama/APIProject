@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/textView_detail_animeSynopsis"
-        android:layout_width="380"
+        android:layout_width="380dp"
         android:layout_height="241dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/textView_detail_animeEpisodeLength"
-        android:layout_width="180"
+        android:layout_width="180dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -68,8 +68,8 @@
 
     <TextView
         android:id="@+id/textView_detail_animeProducer"
-        android:layout_width="180"
-        android:layout_height="40"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/animeProducer"
@@ -80,8 +80,8 @@
 
     <TextView
         android:id="@+id/textView_detail_animeSeasonAired"
-        android:layout_width="180"
-        android:layout_height="40"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/animeSeasonAired"
@@ -92,8 +92,8 @@
 
     <TextView
         android:id="@+id/textView_detail_animeMalScore"
-        android:layout_width="180"
-        android:layout_height="40"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/animeMalScore"

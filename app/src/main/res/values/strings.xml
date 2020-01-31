@@ -16,4 +16,11 @@
     <string name="title">title</string>
     <string name="genre">genre</string>
     <string name="episodeNumber">episode number</string>
+    <string name="animeTitle">Title</string>
+    <string name="animeGenre">Genre</string>
+    <string name="animeSynopsis">Synopsis</string>
+    <string name="animeEpisodes">episodes</string>
+    <string name="animeProducer">Producer</string>
+    <string name="animeSeasonAired">Season aired</string>
+    <string name="animeMalScore">score</string>
 </resources>

@@ -13,14 +13,31 @@ public class Organizer implements Parcelable {
     private String synopsis;
     private String type;
     private String airing_start;
-    private int episodes;
+    private int episodes ;
     private int members;
-    ArrayList<GenreOrganizer> genre = new ArrayList<GenreOrganizer>();
-    private String source;
-    ArrayList<ProducerOrganizer> producer = new ArrayList<ProducerOrganizer>();
+    ArrayList<GenreOrganizer> genre ;
+    private String source ;
+    ArrayList<ProducerOrganizer> producer ;
     private String score;
 
-
+    @Override
+    public String toString() {
+        return "Organizer{" +
+                "mal_id='" + mal_id + '\'' +
+                ", url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                ", type='" + type + '\'' +
+                ", airing_start='" + airing_start + '\'' +
+                ", episodes=" + episodes +
+                ", members=" + members +
+                ", genre=" + genre +
+                ", source='" + source + '\'' +
+                ", producer=" + producer +
+                ", score='" + score + '\'' +
+                '}';
+    }
 
     public Organizer(){
 
@@ -91,14 +108,15 @@ public class Organizer implements Parcelable {
     public void setMembers(int members) {
         this.members = members;
     }
-
     public String getSource() {
         return source;
     }
-
     public void setSource(String source) {
         this.source = source;
     }
+    public String getGenre(){return for(int i=0;i<genre.size();i++){
+
+    }}
 
     @Override
     public int describeContents() {
