@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class GenreOrganizer implements Parcelable {
-    private String type = "";
-    private int mal_id = 0;
-    private String name = "";
-    private String url = "";
+    private String type;
+    private int mal_id;
+    private String name;
+    private String url;
 
 
     public GenreOrganizer(){

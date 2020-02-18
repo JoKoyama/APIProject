@@ -10,7 +10,7 @@ public interface ApiGetter {
     String BASE_URL = "https://api.jikan.moe/v3/";
 
     @GET("search/anime")
-    Call<WrapperOrganizer> getShow(@Query("q") String showName);
+    Call<WrapperOrganizer> getShow(@Query("q") String showName,@Query("page") int pageNumber);
 
     @GET("season/{year}/{season}")
     Call<WrapperOrganizer> getSeason(@Path("season") String season, @Path("year") int year);

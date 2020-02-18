@@ -1,6 +1,6 @@
 package com.example.apiproject;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
 
     private ApiAdapter apiAdapter;
     private List<Organizer> list;
+    public static final String EXTRA_ANIME = "";
 
 
     @Override
@@ -47,25 +49,14 @@ public class MainActivity extends AppCompatActivity
         ApiGetter apiGetter = retrofit.create(ApiGetter.class);
 
         Call<WrapperOrganizer> callWrapperOrganizer = apiGetter.getSeason("winter",2020);
-        ListView listView = findViewById(R.id.ListView_main_list);
-        listView.setAdapter(apiAdapter);
-
-        Log.d("LOOK AT ME", "onCreate: ");
-        Toast.makeText(MainActivity.this,"help me",Toast.LENGTH_SHORT).show();
-
-
-
         callWrapperOrganizer.enqueue(new Callback<WrapperOrganizer>() {
             @Override
             public void onResponse(Call<WrapperOrganizer> call, Response<WrapperOrganizer> response) {
-                list = response.body().getAnime();
-
-
-
-
-                if(list != null) {
+                List<Organizer> test = response.body().getAnime();
+                if(test != null) {
                     Toast.makeText(MainActivity.this, list.toString(),
                             Toast.LENGTH_SHORT).show();
+                    list = test;
                 } else
                 {
                     Toast.makeText(MainActivity.this, "I'm null help", Toast.LENGTH_SHORT).show();
@@ -78,6 +69,25 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+        ListView listView = findViewById(R.id.ListView_main_list);
+        apiAdapter = new ApiAdapter(list);
+        listView.setAdapter(apiAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent targetIntent = new Intent(MainActivity.this,ApiDetail.class);
+                targetIntent.putExtra(EXTRA_ANIME,list.get(i));
+                startActivity(targetIntent);
+                fileList();
+            }
+        });
+
+        Log.d("LOOK AT ME", "onCreate: ");
+        Toast.makeText(MainActivity.this,"help me",Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 
@@ -118,15 +128,11 @@ public class MainActivity extends AppCompatActivity
             super(MainActivity.this,-1,list );
             listList = list;
         }
-       Drawable drawable_from_url(String url, String src_name)
-               throws java.net.MalformedURLException, java.io.IOException {
-           return Drawable.createFromStream(((java.io.InputStream)new java.net.URL(url).getContent()), src_name);
-
-       }
 
        @Override
        public View getView(int position, View convertView, ViewGroup parent) {
-           LayoutInflater inflater = getLayoutInflater();
+
+            LayoutInflater inflater = getLayoutInflater();
 
            if(convertView == null){
                convertView = inflater.inflate(R.layout.listview,parent,false);
@@ -135,10 +141,11 @@ public class MainActivity extends AppCompatActivity
            TextView textViewEpnum = findViewById(R.id.textView_listview_epnum);
            TextView textViewGenre = findViewById(R.id.textView_listview_genre);
            ImageView imageViewTitle = findViewById(R.id.imageView_listview_titlecard);
-           Picasso.get().load(list.get(position).getImage_url()).into(imageViewTitle);
-           textViewEpnum.setText(list.get(position).getEpisodes());
-           textViewTitle.setText(list.get(position).getTitle());
-           textViewGenre.setText(list.get(position).get);
+           Picasso.get().load(listList.get(position).getImage_url()).into(imageViewTitle);
+           textViewEpnum.setText(listList.get(position).getEpisodes());
+           textViewTitle.setText(listList.get(position).getTitle());
+           textViewGenre.setText(listList.get(position).getGenre());
+           return convertView;
         }
    }
 

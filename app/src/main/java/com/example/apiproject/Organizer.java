@@ -3,7 +3,7 @@ package com.example.apiproject;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Organizer implements Parcelable {
     private String mal_id;
@@ -15,9 +15,9 @@ public class Organizer implements Parcelable {
     private String airing_start;
     private int episodes ;
     private int members;
-    ArrayList<GenreOrganizer> genre ;
+    List<GenreOrganizer> genre ;
     private String source ;
-    ArrayList<ProducerOrganizer> producer ;
+    List<ProducerOrganizer> producer ;
     private String score;
 
     @Override
@@ -114,9 +114,20 @@ public class Organizer implements Parcelable {
     public void setSource(String source) {
         this.source = source;
     }
-    public String getGenre(){return for(int i=0;i<genre.size();i++){
-
-    }}
+    public String getGenre(){
+        String listOfGenre = "";
+        for(int i=0;i<genre.size()-1;i++){
+            listOfGenre = listOfGenre + genre.get(i).getName()+", ";
+        }
+        return "placeholder";
+    }
+    public String getProducer(){
+        String listOfProducer = "";
+        for(int i=0;i<genre.size();i++){
+            listOfProducer = listOfProducer + producer.get(i).getName()+", ";
+        }
+        return listOfProducer;
+    }
 
     @Override
     public int describeContents() {
